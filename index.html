@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  ============================================================================
+  HOLZSTRUKTEUR — Onepager
+  ----------------------------------------------------------------------------
+  AUSZUFÜLLEN vor dem Livegang. Alle Stellen sind mit "TODO" markiert und
+  lassen sich mit  grep -rn "TODO" .  auffinden:
+
+    1. Kontaktdaten .......... Sektion #kontakt (Adresse, Telefon, E-Mail)
+    2. Projekte .............. Sektion #projekte (4 Karten: Name, Ort, Jahr,
+                               Leistung) + Projektbilder in assets/
+    3. Domain ................ canonical, og:url, sitemap.xml (aktuell
+                               https://holzstrukteur.de/)
+    4. JSON-LD ............... Block am Ende dieser Datei
+    5. impressum.html ........ Firmendaten, UID, Berufsrecht
+    6. datenschutz.html ...... Verantwortlicher, Hoster
+
+  Projektbilder: in jeder Projektkarte ist ein <img> als Kommentar
+  vorbereitet — einkommentieren und den Platzhalter-<div> löschen.
+  ============================================================================
+-->
+
+<title>Holzstrukteur — Konstruktion & Vermessung für den Holzbau | Planungsbüro Georg Kohler</title>
+<meta name="description" content="Planungsbüro Georg Kohler: Konstruktion und Vermessung für Häuser in Holzbauweise. Werkplanung, Abbunddaten, Aufmaß und Absteckung aus einer Hand.">
+<meta name="author" content="Georg Kohler">
+<link rel="canonical" href="https://holzstrukteur.de/">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_AT">
+<meta property="og:site_name" content="Holzstrukteur">
+<meta property="og:title" content="Holzstrukteur — Konstruktion & Vermessung für den Holzbau">
+<meta property="og:description" content="Planungsbüro Georg Kohler: Konstruktion und Vermessung für Häuser in Holzbauweise. Werkplanung, Abbunddaten, Aufmaß und Absteckung aus einer Hand.">
+<meta property="og:url" content="https://holzstrukteur.de/">
+<meta property="og:image" content="https://holzstrukteur.de/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo Holzstrukteur — Planungsbüro Georg Kohler">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#121212">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
+
+<header class="site-header" id="seitenkopf">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top" aria-label="Holzstrukteur — Startseite">
+      <img src="assets/logo-white.svg" alt="" width="1942" height="640">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnavigation">
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle__label">Menü</span>
+    </button>
+
+    <nav class="nav" id="hauptnavigation" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="#konstruktion">Konstruktion</a></li>
+        <li><a href="#vermessung">Vermessung</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#projekte">Projekte</a></li>
+        <li><a href="#kontakt" class="nav__cta">Kontakt</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="hauptinhalt">
+
+  <!-- ── Hero ────────────────────────────────────────────────────────────── -->
+  <section class="section section--dark hero" id="top">
+    <div class="wrap hero__inner">
+      <img class="hero__logo" src="assets/logo-white.svg" alt="Holzstrukteur" width="1942" height="640">
+      <div class="hero__text">
+        <p class="kicker">Planungsbüro Georg Kohler</p>
+        <h1>Konstruktion &amp; Vermessung<br>für den Holzbau</h1>
+        <p class="lead">
+          Vom aufgemessenen Bestand bis zur abbundfertigen Werkplanung: Ich plane
+          Häuser in Holzbauweise so, dass auf der Baustelle jedes Bauteil dorthin
+          passt, wo es hingehört — millimetergenau, nachvollziehbar, termintreu.
+        </p>
+        <p class="hero__actions">
+          <a class="btn btn--primary" href="#kontakt">Projekt anfragen</a>
+          <a class="btn btn--ghost" href="#leistungen">Leistungen ansehen</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 01 Konstruktion ─────────────────────────────────────────────────── -->
+  <section class="section split" id="konstruktion">
+    <div class="wrap split__inner">
+      <div class="split__head">
+        <p class="kicker"><span class="kicker__num">01</span> Konstruktion</p>
+        <h2>Holzbau, der auf dem Papier<br>schon fertig ist.</h2>
+      </div>
+      <div class="split__body">
+        <p>
+          Jedes Holzhaus wird zweimal gebaut — einmal am Rechner und einmal auf der
+          Baustelle. Je genauer der erste Durchgang ist, desto ruhiger verläuft der
+          zweite. Ich entwickle aus Entwurf und Statik eine vollständige
+          Holzbaukonstruktion: Wand-, Decken- und Dachaufbauten, Anschlussdetails,
+          Verbindungsmittel und den kompletten Bauteilkatalog.
+        </p>
+        <p>
+          Geplant wird dreidimensional und bauteilgenau. Daraus entstehen Werk- und
+          Montagepläne, Stücklisten und die Maschinendaten für den Abbund — ein
+          Datensatz, mit dem Zimmerei, Statik und Bauleitung gleichermaßen arbeiten
+          können. Kollisionen fallen dabei am Bildschirm auf, nicht erst beim Aufstellen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 Vermessung ───────────────────────────────────────────────────── -->
+  <section class="section section--alt split split--reverse" id="vermessung">
+    <div class="wrap split__inner">
+      <div class="split__head">
+        <p class="kicker"><span class="kicker__num">02</span> Vermessung</p>
+        <h2>Erst messen.<br>Dann konstruieren.</h2>
+      </div>
+      <div class="split__body">
+        <p>
+          Vorgefertigte Holzbauteile verzeihen keine Überraschungen. Deshalb steht am
+          Anfang das Aufmaß: Ich erfasse Grundstück, Bestand und Fundamente vor Ort,
+          prüfe Höhenlagen, Achsen und Winkel und übergebe ein sauberes,
+          maßhaltiges Modell als Planungsgrundlage.
+        </p>
+        <p>
+          Auch danach bleibt die Vermessung Teil der Arbeit: Absteckung der Achsen vor
+          Montagebeginn, Kontrolle von Bodenplatte und Ankerlagen, Aufmaß für den
+          Anschluss an Bestandsbauten. So trifft die Konstruktion aus dem Büro exakt
+          die Wirklichkeit auf der Baustelle.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Leistungen ──────────────────────────────────────────────────────── -->
+  <section class="section" id="leistungen">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker"><span class="kicker__num">03</span> Leistungen</p>
+        <h2>Was das Büro übernimmt</h2>
+        <p class="lead lead--tight">
+          Einzeln beauftragbar oder als durchgehende Begleitung vom Aufmaß bis zur
+          Montage — je nachdem, was Ihr Projekt gerade braucht.
+        </p>
+      </div>
+
+      <ul class="cards cards--services">
+        <li class="card">
+          <h3>Werk- &amp; Ausführungsplanung</h3>
+          <p>Vollständige Holzbaukonstruktion mit Aufbauten, Details und Bauteilkatalog — planungsreif für die Ausführung.</p>
+        </li>
+        <li class="card">
+          <h3>Abbundplanung &amp; CNC-Daten</h3>
+          <p>Bauteilgenaue 3D-Modelle, Stücklisten und Maschinendaten für den Abbund in der Zimmerei.</p>
+        </li>
+        <li class="card">
+          <h3>Aufmaß &amp; Bestandsvermessung</h3>
+          <p>Maßhaltige Erfassung von Grundstück, Bestand und Fundamenten als verlässliche Planungsgrundlage.</p>
+        </li>
+        <li class="card">
+          <h3>Absteckung auf der Baustelle</h3>
+          <p>Achsen, Höhen und Ankerlagen vor Montagebeginn eingemessen und kontrolliert.</p>
+        </li>
+        <li class="card">
+          <h3>3D-Aufnahme &amp; Punktwolke</h3>
+          <p>Digitale Bestandsaufnahme für Umbau, Aufstockung und Anschlüsse an bestehende Gebäude.</p>
+        </li>
+        <li class="card">
+          <h3>Einreich- &amp; Ausführungsunterlagen</h3>
+          <p>Planunterlagen, Nachweise und Dokumentation, aufbereitet für Behörde, Statik und Bauleitung.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Projekte ────────────────────────────────────────────────────────── -->
+  <section class="section section--alt" id="projekte">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="kicker"><span class="kicker__num">04</span> Projekte</p>
+        <h2>Eine Auswahl</h2>
+        <p class="lead lead--tight">
+          Ein Ausschnitt aus den vergangenen Jahren — Neubau, Aufstockung und Sanierung
+          in Holzbauweise.
+        </p>
+      </div>
+
+      <ul class="cards cards--projects">
+
+        <!-- TODO: Projekt 1 — Name, Ort, Jahr, Leistung und Bild ersetzen -->
+        <li class="card card--project">
+          <div class="card__media" aria-hidden="true"><span>TODO: Bild</span></div>
+          <!-- <img class="card__media" src="assets/projekt-1.jpg" alt="TODO: Bildbeschreibung" width="800" height="600" loading="lazy"> -->
+          <h3>TODO: Projektname</h3>
+          <p class="meta">TODO: Ort <span aria-hidden="true">·</span> TODO: Jahr</p>
+          <p>TODO: Ein Satz zum Projekt und zum übernommenen Leistungsumfang.</p>
+        </li>
+
+        <!-- TODO: Projekt 2 — Name, Ort, Jahr, Leistung und Bild ersetzen -->
+        <li class="card card--project">
+          <div class="card__media" aria-hidden="true"><span>TODO: Bild</span></div>
+          <!-- <img class="card__media" src="assets/projekt-2.jpg" alt="TODO: Bildbeschreibung" width="800" height="600" loading="lazy"> -->
+          <h3>TODO: Projektname</h3>
+          <p class="meta">TODO: Ort <span aria-hidden="true">·</span> TODO: Jahr</p>
+          <p>TODO: Ein Satz zum Projekt und zum übernommenen Leistungsumfang.</p>
+        </li>
+
+        <!-- TODO: Projekt 3 — Name, Ort, Jahr, Leistung und Bild ersetzen -->
+        <li class="card card--project">
+          <div class="card__media" aria-hidden="true"><span>TODO: Bild</span></div>
+          <!-- <img class="card__media" src="assets/projekt-3.jpg" alt="TODO: Bildbeschreibung" width="800" height="600" loading="lazy"> -->
+          <h3>TODO: Projektname</h3>
+          <p class="meta">TODO: Ort <span aria-hidden="true">·</span> TODO: Jahr</p>
+          <p>TODO: Ein Satz zum Projekt und zum übernommenen Leistungsumfang.</p>
+        </li>
+
+        <!-- TODO: Projekt 4 — Name, Ort, Jahr, Leistung und Bild ersetzen -->
+        <li class="card card--project">
+          <div class="card__media" aria-hidden="true"><span>TODO: Bild</span></div>
+          <!-- <img class="card__media" src="assets/projekt-4.jpg" alt="TODO: Bildbeschreibung" width="800" height="600" loading="lazy"> -->
+          <h3>TODO: Projektname</h3>
+          <p class="meta">TODO: Ort <span aria-hidden="true">·</span> TODO: Jahr</p>
+          <p>TODO: Ein Satz zum Projekt und zum übernommenen Leistungsumfang.</p>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Kontakt ─────────────────────────────────────────────────────────── -->
+  <section class="section section--dark contact" id="kontakt">
+    <div class="wrap contact__inner">
+      <div class="contact__pitch">
+        <p class="kicker"><span class="kicker__num">05</span> Kontakt</p>
+        <h2>Sie planen ein Haus<br>in Holzbauweise?</h2>
+        <p class="lead">
+          Schreiben oder rufen Sie an — am besten mit ein paar Eckdaten zu Ort,
+          Größe und Zeitplan. Sie bekommen eine ehrliche Einschätzung, was das
+          Projekt an Konstruktion und Vermessung braucht.
+        </p>
+        <p>
+          <!-- TODO: E-Mail-Adresse auch hier ersetzen -->
+          <a class="btn btn--primary" href="mailto:TODO@holzstrukteur.de">E-Mail schreiben</a>
+        </p>
+      </div>
+
+      <address class="contact__details">
+        <p class="contact__name">Planungsbüro Georg Kohler</p>
+
+        <div class="contact__row">
+          <span class="contact__label">Adresse</span>
+          <!-- TODO: Straße, PLZ, Ort ersetzen -->
+          <span class="contact__value">TODO: Straße Hausnummer<br>TODO: PLZ Ort<br>Österreich</span>
+        </div>
+
+        <div class="contact__row">
+          <span class="contact__label">Telefon</span>
+          <!-- TODO: Telefonnummer ersetzen — href im Format +43… ohne Leerzeichen -->
+          <span class="contact__value"><a href="tel:+430000000000">TODO: +43 000 0000000</a></span>
+        </div>
+
+        <div class="contact__row">
+          <span class="contact__label">E-Mail</span>
+          <!-- TODO: E-Mail-Adresse ersetzen -->
+          <span class="contact__value"><a href="mailto:TODO@holzstrukteur.de">TODO@holzstrukteur.de</a></span>
+        </div>
+
+        <div class="contact__row">
+          <span class="contact__label">Einsatzgebiet</span>
+          <!-- TODO: Region anpassen -->
+          <span class="contact__value">TODO: Region</span>
+        </div>
+      </address>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <a class="brand brand--footer" href="#top" aria-label="Holzstrukteur — nach oben">
+      <img src="assets/logo-black.svg" alt="" width="1942" height="640">
+    </a>
+    <p class="site-footer__copy">
+      <span>&copy; <span id="jahr">2026</span> Georg Kohler</span>
+    </p>
+    <nav class="site-footer__nav" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- TODO: Werte im JSON-LD analog zur Kontaktsektion ausfüllen -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Holzstrukteur — Planungsbüro Georg Kohler",
+  "description": "Konstruktion und Vermessung für Häuser in Holzbauweise: Werkplanung, Abbunddaten, Aufmaß und Absteckung.",
+  "url": "https://holzstrukteur.de/",
+  "logo": "https://holzstrukteur.de/assets/og-image.png",
+  "image": "https://holzstrukteur.de/assets/og-image.png",
+  "founder": { "@type": "Person", "name": "Georg Kohler" },
+  "telephone": "TODO: +43 000 0000000",
+  "email": "TODO@holzstrukteur.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "TODO: Straße Hausnummer",
+    "postalCode": "TODO: PLZ",
+    "addressLocality": "TODO: Ort",
+    "addressCountry": "AT"
+  },
+  "areaServed": "TODO: Region",
+  "knowsAbout": ["Holzbau", "Holzbaukonstruktion", "Abbundplanung", "Bauvermessung", "Aufmaß"]
+}
+</script>
+
+</body>
+</html>

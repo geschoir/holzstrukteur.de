@@ -1,0 +1,525 @@
+/* =========================================================================
+   HOLZSTRUKTEUR — Planungsbüro Georg Kohler
+   Design-Tokens → Basis → Layout → Komponenten → Sektionen → Responsive
+   ========================================================================= */
+
+:root {
+  /* Farben */
+  --paper:      #F6F4F0;
+  --paper-alt:  #EDE9E3;
+  --ink:        #121212;
+  --ink-soft:   #5B5854;
+  --wood:       #B4682A;
+  --line:       rgba(18, 18, 18, .12);
+
+  /* Auf hellem Grund verwendete Rollen (in .section--dark überschrieben) */
+  --bg:          var(--paper);
+  --fg:          var(--ink);
+  --fg-soft:     var(--ink-soft);
+  --rule:        var(--line);
+  --btn-fg:      var(--paper);
+  --btn-bg:      var(--ink);
+
+  /* Schrift */
+  --font-sans: "PT Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "PT Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Maße */
+  --wrap:       1140px;
+  --gutter:     clamp(1.25rem, 5vw, 3rem);
+  --section-y:  clamp(4.5rem, 10vw, 8.5rem);
+  --header-h:   4.5rem;
+}
+
+/* ── Basis ───────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(2.1rem, 5.4vw, 3.9rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.85rem); }
+h3 { font-size: 1.0625rem; line-height: 1.35; }
+
+p { margin: 0 0 1.15em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: inherit; }
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+address { font-style: normal; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+:focus-visible {
+  outline: 2px solid var(--wood);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--paper);
+  padding: .75rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+}
+.skip-link:focus { left: 0; }
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+  background: var(--bg);
+  color: var(--fg);
+  scroll-margin-top: var(--header-h);
+}
+
+.section--alt { --bg: var(--paper-alt); }
+
+.section--dark {
+  --bg:      var(--ink);
+  --fg:      var(--paper);
+  --fg-soft: rgba(246, 244, 240, .68);
+  --rule:    rgba(246, 244, 240, .18);
+  --btn-fg:  var(--ink);
+  --btn-bg:  var(--paper);
+}
+
+.section__head {
+  max-width: 46rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+.section__head h2 { margin-bottom: 1rem; }
+
+/* ── Typo-Bausteine ──────────────────────────────────────────────────────── */
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+  margin: 0 0 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: .7em;
+}
+
+.kicker__num {
+  color: var(--wood);
+  padding-right: .7em;
+  border-right: 1px solid var(--rule);
+}
+
+.lead {
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--fg-soft);
+  max-width: 40rem;
+}
+.lead--tight { font-size: 1.0625rem; }
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: .95rem 1.6rem;
+  border: 1px solid transparent;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.btn--primary {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border-color: var(--btn-bg);
+}
+.btn--primary:hover { background: var(--wood); border-color: var(--wood); color: #fff; }
+
+.btn--ghost {
+  color: var(--fg);
+  border-color: var(--rule);
+}
+.btn--ghost:hover { border-color: var(--fg); }
+
+/* ── Kopfzeile ───────────────────────────────────────────────────────────── */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: var(--header-h);
+}
+
+/* Das Logo liegt in zwei Farbvarianten vor: logo-white.svg auf dunklem Grund
+   (Kopfzeile, Hero), logo-black.svg auf hellem Grund (Fußzeile). */
+.brand { display: block; line-height: 0; }
+.brand img { width: 8.5rem; height: auto; }
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.nav a {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(246, 244, 240, .72);
+  padding-block: .4rem;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.nav a:hover { color: var(--paper); border-bottom-color: var(--wood); }
+.nav__cta { color: var(--paper) !important; border-bottom-color: var(--wood); }
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  gap: .6rem;
+  background: none;
+  border: 0;
+  padding: .5rem 0;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.nav-toggle__bars {
+  display: grid;
+  gap: 4px;
+  width: 20px;
+}
+.nav-toggle__bars span {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bars span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+.hero { padding-block: clamp(3.5rem, 9vw, 7rem) var(--section-y); }
+
+.hero__inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.hero__logo {
+  width: min(100%, 26rem);
+  height: auto;
+  justify-self: start;
+}
+
+.hero__text .lead { margin-top: 1.5rem; }
+
+.hero h1 { margin-bottom: 0; }
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 2.25rem;
+}
+
+/* ── Zweispalter (Konstruktion / Vermessung) ─────────────────────────────── */
+
+.split__inner {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.split__body { color: var(--fg-soft); max-width: 40rem; }
+
+/* ── Karten ──────────────────────────────────────────────────────────────── */
+
+.cards {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.cards--services { grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr)); }
+
+/* Vier Projekte stehen als 2×2-Raster — so bleiben die Bilder groß genug,
+   statt in einer Dreierreihe mit einzelnem Nachzügler zu landen. */
+.cards--projects {
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  max-width: 62rem;
+}
+
+.card { min-width: 0; }
+
+.cards--services .card {
+  border-top: 2px solid var(--ink);
+  padding-top: 1.15rem;
+}
+.cards--services .card h3 { margin-bottom: .5rem; }
+.cards--services .card p {
+  color: var(--fg-soft);
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+
+.card--project h3 { margin-bottom: .35rem; }
+.card--project .meta { margin-bottom: .65rem; }
+.card--project p:last-child {
+  color: var(--fg-soft);
+  font-size: .9375rem;
+  line-height: 1.55;
+}
+
+.card__media {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  margin-bottom: 1.1rem;
+  object-fit: cover;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      rgba(180, 104, 42, .16) 0 14px,
+      rgba(180, 104, 42, .05) 14px 28px
+    ),
+    var(--paper);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__media span {
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--wood);
+}
+
+/* ── Kontakt ─────────────────────────────────────────────────────────────── */
+
+.contact__inner {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.contact__pitch h2 { margin-bottom: 1.25rem; }
+.contact__pitch .btn { margin-top: 1rem; }
+
+.contact__details {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.75rem;
+}
+
+.contact__name {
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.contact__row {
+  display: grid;
+  gap: .35rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.contact__row:last-child { border-bottom: 0; }
+
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: .6875rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-soft);
+}
+
+.contact__value { font-size: 1.0625rem; line-height: 1.5; }
+
+.contact__value a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  transition: border-color .18s ease, color .18s ease;
+}
+.contact__value a:hover { color: var(--wood); border-bottom-color: var(--wood); }
+
+/* ── Fußzeile ────────────────────────────────────────────────────────────── */
+
+.site-footer {
+  background: var(--paper-alt);
+  border-top: 1px solid var(--line);
+  padding-block: 2.5rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand--footer img { width: 7rem; }
+
+.site-footer__copy,
+.site-footer__nav {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.site-footer__nav { display: flex; gap: 1.5rem; }
+.site-footer__nav a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+.site-footer__nav a:hover { color: var(--ink); border-bottom-color: var(--wood); }
+
+/* ── Rechtstexte (impressum.html / datenschutz.html) ─────────────────────── */
+
+.legal { max-width: 46rem; }
+.legal h1 { margin-bottom: 1.5rem; }
+.legal h2 {
+  font-size: 1.25rem;
+  margin-top: 2.75rem;
+  margin-bottom: .75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+.legal p, .legal li { color: var(--ink-soft); }
+.legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1.15em;
+}
+.legal li { margin-bottom: .4em; }
+.legal a { color: var(--wood); }
+
+.legal__note {
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  line-height: 1.6;
+  letter-spacing: .01em;
+  color: var(--ink-soft);
+  background: var(--paper-alt);
+  border-left: 3px solid var(--wood);
+  padding: 1.15rem 1.35rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (min-width: 48rem) {
+  .hero__inner        { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); }
+  .split__inner       { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+  .contact__inner     { grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); }
+
+  .split--reverse .split__head { order: 2; }
+  .split--reverse .split__body { order: 1; }
+
+  /* Ab Tablet ist die Navigation immer sichtbar — auch wenn das Mobilmenü
+     zuvor geschlossen war und [hidden] noch gesetzt ist. */
+  .nav[hidden] { display: block; }
+}
+
+@media (max-width: 47.999rem) {
+  .nav-toggle { display: inline-flex; }
+
+  .nav {
+    order: 3;
+    flex-basis: 100%;
+    border-top: 1px solid rgba(246, 244, 240, .16);
+  }
+  .nav[hidden] { display: none; }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding-block: .5rem 1rem;
+  }
+  .nav li + li { border-top: 1px solid rgba(246, 244, 240, .1); }
+  .nav a { display: block; padding-block: .85rem; border-bottom: 0; }
+  .nav a:hover { border-bottom: 0; }
+  .nav__cta { color: var(--wood) !important; }
+
+  .site-header__inner { flex-wrap: wrap; }
+
+  .site-footer__inner { justify-content: flex-start; }
+}
