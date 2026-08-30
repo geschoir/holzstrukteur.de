@@ -41,6 +41,27 @@
     });
   }
 
+  /* ── Keyvisual ──────────────────────────────────────────────────────────
+     Wer reduzierte Bewegung eingestellt hat, sieht das Blattwerk als
+     Standbild. autoplay im Markup greift sonst, bevor JS geladen ist.    */
+
+  var keyvisual = document.querySelector('.keyvisual__media');
+  var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (keyvisual) {
+    var bewegung = function () {
+      if (ruhig.matches) {
+        keyvisual.pause();
+        keyvisual.currentTime = 0;
+      } else {
+        keyvisual.play().catch(function () { /* Autoplay abgelehnt — Poster bleibt. */ });
+      }
+    };
+
+    bewegung();
+    ruhig.addEventListener('change', bewegung);
+  }
+
   /* ── Jahreszahl im Footer ───────────────────────────────────────────── */
 
   var jahr = document.getElementById('jahr');
