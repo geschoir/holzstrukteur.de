@@ -24,16 +24,24 @@
 
 <header class="site-header">
   <div class="wrap site-header__inner">
-    <a class="brand" href="index.html" aria-label="Holzstrukteur — Startseite">
-      <img src="assets/logo-white.svg" alt="" width="1942" height="640">
-    </a>
-    <nav class="nav" aria-label="Hauptnavigation">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnavigation">
+      <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle__label">Menü</span>
+    </button>
+
+    <nav class="nav" id="hauptnavigation" aria-label="Hauptnavigation">
       <ul>
+        <li><a href="index.html#vermessung">Vermessung</a></li>
+        <li><a href="index.html#konstruktion">Konstruktion</a></li>
+        <li><a href="index.html#absteckung">Absteckung</a></li>
         <li><a href="index.html#leistungen">Leistungen</a></li>
-        <li><a href="index.html#projekte">Projekte</a></li>
         <li><a href="index.html#kontakt" class="nav__cta">Kontakt</a></li>
       </ul>
     </nav>
+
+    <a class="brand" href="index.html" aria-label="Holzstrukteur — Startseite">
+      <img src="assets/logo-white.svg" alt="" width="1942" height="640">
+    </a>
   </div>
 </header>
 

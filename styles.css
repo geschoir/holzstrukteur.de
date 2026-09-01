@@ -24,11 +24,13 @@
   --font-sans: "PT Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "PT Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
+  --font-weight-bold: 800;
+
   /* Maße */
   --wrap:       1140px;
   --gutter:     clamp(1.25rem, 5vw, 3rem);
   --section-y:  clamp(4.5rem, 10vw, 8.5rem);
-  --header-h:   4.5rem;
+  --header-h:   5.5rem;
 }
 
 /* ── Basis ───────────────────────────────────────────────────────────────── */
@@ -133,10 +135,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .kicker {
   font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
   font-size: .75rem;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--fg-soft);
   margin: 0 0 1.15rem;
   display: flex;
   align-items: center;
@@ -170,12 +172,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .btn {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: .8125rem;
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
   letter-spacing: .1em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: .95rem 1.6rem;
+  padding: .66rem 1.33rem;
   border: 1px solid transparent;
+  border-radius: .25em;
   transition: background-color .18s ease, color .18s ease, border-color .18s ease;
 }
 
@@ -213,7 +217,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Das Logo liegt in zwei Farbvarianten vor: logo-white.svg auf dunklem Grund
    (Kopfzeile, Hero), logo-black.svg auf hellem Grund (Fußzeile). */
 .brand { display: block; line-height: 0; }
-.brand img { width: 8.5rem; height: auto; }
+.brand img { width: 4rem; height: auto; }
 
 .nav ul {
   display: flex;
@@ -223,6 +227,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .nav a {
   font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
   font-size: .75rem;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -233,7 +238,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: color .18s ease, border-color .18s ease;
 }
 .nav a:hover { color: var(--paper); border-bottom-color: var(--wood); }
-.nav__cta { color: var(--paper) !important; border-bottom-color: var(--wood); }
 
 .nav-toggle {
   display: none;
@@ -285,9 +289,9 @@ ul { margin: 0; padding: 0; list-style: none; }
    Das Seitenverhältnis 507:621 entspricht der Bounding-Box des Logopfades. */
 .keyvisual {
   margin: 0;
-  width: min(100%, 20rem);
+  width: min(100%, 18rem);
   aspect-ratio: 507 / 621;
-  justify-self: start;
+  justify-self: center;
 }
 
 .keyvisual__media {
@@ -307,7 +311,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: .75rem;
+  gap: 1rem;
   margin-top: 2.25rem;
 }
 
@@ -320,6 +324,17 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .split__body { color: var(--fg-soft); max-width: 40rem; }
+
+/* Sektionssymbole aus dem Lucide-Set, direkt als Inline-SVG eingebettet —
+   so bleibt die Seite ohne zusätzliche Anfrage und ohne Icon-Bibliothek.
+   Der dünnere Strich (1.5 statt 2) passt zum Schriftbild. */
+.split__icon {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-bottom: 1rem;
+  color: var(--wood);
+}
 
 /* ── Karten ──────────────────────────────────────────────────────────────── */
 
@@ -389,19 +404,37 @@ ul { margin: 0; padding: 0; list-style: none; }
 .contact__inner {
   display: grid;
   gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: start;
+  /* Beide Spalten werden auf Zeilenhöhe gestreckt (Grid-Standard), damit die
+     rechte Spalte ihre beiden Blöcke selbst an die Ränder verteilen kann. */
 }
 
 .contact__pitch h2 { margin-bottom: 1.25rem; }
 .contact__pitch .btn { margin-top: 1rem; }
 
+/* Rechte Spalte: Emblem oben, Adressblock unten. Ist die Pitch-Spalte höher,
+   wächst der Abstand dazwischen; sonst bleibt es beim gap-Mindestabstand. */
+.contact__aside {
+  display: grid;
+  align-content: space-between;
+  justify-items: start;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+.contact__seal {
+  width: clamp(6.5rem, 14vw, 10rem);
+  height: auto;
+  opacity: .92;
+}
+
 .contact__details {
-  border-top: 1px solid var(--rule);
+  width: 100%;
+  border-top: 2px solid var(--rule);
   padding-top: 1.75rem;
 }
 
 .contact__name {
   font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
   font-size: .8125rem;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -412,12 +445,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: grid;
   gap: .35rem;
   padding-block: 1rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--rule);
 }
 .contact__row:last-child { border-bottom: 0; }
 
 .contact__label {
   font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
   font-size: .6875rem;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -428,7 +462,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .contact__value a {
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
   padding-bottom: 1px;
   transition: border-color .18s ease, color .18s ease;
 }
@@ -455,6 +488,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .site-footer__copy,
 .site-footer__nav {
   font-family: var(--font-mono);
+  font-weight: var(--font-weight-bold);
   font-size: .75rem;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -520,6 +554,19 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 47.999rem) {
   .nav-toggle { display: inline-flex; }
 
+  /* Die Kopfzeile trägt ihre Höhe hier nicht am Container, sondern an Logo
+     und Schalter: Sobald das Menü als zweite Flex-Zeile umbricht, greift
+     die min-height des Containers nicht mehr, die erste Zeile schrumpfte
+     sonst auf Inhaltshöhe und klebte am oberen Rand. */
+  .site-header__inner {
+    flex-wrap: wrap;
+    min-height: 0;
+    align-content: flex-start;
+    row-gap: 0;
+  }
+  .brand, .nav-toggle { min-height: var(--header-h); }
+  .brand { display: flex; align-items: center; }
+
   .nav {
     order: 3;
     flex-basis: 100%;
@@ -537,8 +584,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav a { display: block; padding-block: .85rem; border-bottom: 0; }
   .nav a:hover { border-bottom: 0; }
   .nav__cta { color: var(--wood) !important; }
-
-  .site-header__inner { flex-wrap: wrap; }
 
   .site-footer__inner { justify-content: flex-start; }
 }

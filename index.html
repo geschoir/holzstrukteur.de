@@ -4,32 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--
-  ============================================================================
-  HOLZSTRUKTEUR — Onepager
-  ----------------------------------------------------------------------------
-  AUSZUFÜLLEN vor dem Livegang. Alle Stellen sind mit "TODO" markiert und
-  lassen sich mit  grep -rn "TODO" .  auffinden:
-
-    1. Kontaktdaten .......... Sektion #kontakt (Adresse, Telefon, E-Mail)
-    2. Domain ................ canonical, og:url, sitemap.xml (aktuell
-                               https://holzstrukteur.de/)
-    3. JSON-LD ............... Block am Ende dieser Datei
-    4. impressum.html ........ Firmendaten, UID, Berufsrecht
-    5. datenschutz.html ...... Verantwortlicher, Hoster
-  ============================================================================
--->
-
-<title>Holzstrukteur — Konstruktion & Vermessung für den Holzbau | Planungsbüro Georg Kohler</title>
-<meta name="description" content="Planungsbüro Georg Kohler: Konstruktion und Vermessung für Häuser in Holzbauweise. Werkplanung, Abbunddaten, Aufmaß und Absteckung aus einer Hand.">
+<title>Holzbau-Konstruktion & Vermessung | Holzstrukteur Beratzhausen, Regensburg</title>
+<meta name="description" content="Planungsbüro Georg Kohler: Konstruktion und Vermessung für Häuser in Holzbauweise. Werkplanung, Aufmaß und Absteckung.">
 <meta name="author" content="Georg Kohler">
 <link rel="canonical" href="https://holzstrukteur.de/">
 
 <meta property="og:type" content="website">
-<meta property="og:locale" content="de_AT">
+<meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Holzstrukteur">
 <meta property="og:title" content="Holzstrukteur — Konstruktion & Vermessung für den Holzbau">
-<meta property="og:description" content="Planungsbüro Georg Kohler: Konstruktion und Vermessung für Häuser in Holzbauweise. Werkplanung, Abbunddaten, Aufmaß und Absteckung aus einer Hand.">
+<meta property="og:description" content="Planungsbüro Georg Kohler: Konstruktion und Vermessung für Häuser in Holzbauweise. Werkplanung, Aufmaß und Absteckung.">
 <meta property="og:url" content="https://holzstrukteur.de/">
 <meta property="og:image" content="https://holzstrukteur.de/assets/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -52,9 +36,6 @@
 
 <header class="site-header" id="seitenkopf">
   <div class="wrap site-header__inner">
-    <a class="brand" href="#top" aria-label="Holzstrukteur — Startseite">
-      <img src="assets/logo-white.svg" alt="" width="1942" height="640">
-    </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptnavigation">
       <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -70,6 +51,10 @@
         <li><a href="#kontakt" class="nav__cta">Kontakt</a></li>
       </ul>
     </nav>
+
+        <a class="brand" href="#top" aria-label="Holzstrukteur — Startseite">
+      <img src="assets/logo-white.svg" alt="" width="1942" height="640">
+    </a>
   </div>
 </header>
 
@@ -80,9 +65,44 @@
     <div class="wrap hero__inner">
 
       <figure class="keyvisual" aria-hidden="true">
+        <!--
+          Beide Dateien enthalten den Clip als Palindrom: 7,8 s vorwärts (die
+          erste Hälfte des Originals), dann dieselben Bilder rückwärts, ohne
+          die Wendebilder doppelt. Dadurch genügt das normale loop-Attribut
+          für einen nahtlosen Vor-Zurück-Lauf, ganz ohne JavaScript.
+
+          WebM/VP9 steht zuerst und wird von allen aktuellen Browsern genommen;
+          das MP4 bedient ältere Safari-Versionen. Beide entstehen direkt aus
+          dem 4K-Master 14558333_2160_3840_29fps.mp4, nicht aus einer bereits
+          komprimierten Zwischenstufe — sonst verlieren VP9 und AV1 ihren
+          Vorsprung, weil sie Bits für die Artefakte der Vorstufe ausgeben.
+
+            M=14558333_2160_3840_29fps.mp4
+            FC="[0:v]crop=2160:2646:0:597,scale=640:784,fps=25,\
+                trim=start_frame=0:end_frame=196,setpts=PTS-STARTPTS,split[a][b];\
+                [b]reverse,trim=start_frame=1:end_frame=195,\
+                setpts=PTS-STARTPTS[r];[a][r]concat=n=2:v=1[v]"
+
+            ffmpeg -i $M -filter_complex "$FC" -map "[v]" -an \
+              -c:v libx264 -preset veryslow -crf 30 -pix_fmt yuv420p \
+              -movflags +faststart keyvisual.mp4
+
+            ffmpeg -i $M -filter_complex "$FC" -map "[v]" -an -c:v libvpx-vp9 \
+              -b:v 1100k -pass 1 -row-mt 1 -deadline good -cpu-used 4 \
+              -auto-alt-ref 1 -lag-in-frames 25 -g 240 -f null /dev/null
+            ffmpeg -i $M -filter_complex "$FC" -map "[v]" -an -c:v libvpx-vp9 \
+              -b:v 1100k -pass 2 -row-mt 1 -deadline good -cpu-used 0 \
+              -auto-alt-ref 1 -lag-in-frames 25 -g 240 -pix_fmt yuv420p \
+              keyvisual.webm
+
+          end_frame=196 ist die halbe Cliplänge (393 Bilder bei 25 fps); die
+          Rückwärtshälfte lässt Anfang und Ende weg, sonst steht das Bild am
+          Wendepunkt und am Loop-Sprung je zwei Bilder lang still.
+        -->
         <video class="keyvisual__media" autoplay muted loop playsinline
                preload="metadata" width="640" height="784"
                poster="assets/keyvisual-poster.jpg">
+          <source src="assets/keyvisual.webm" type="video/webm">
           <source src="assets/keyvisual.mp4" type="video/mp4">
         </video>
       </figure>
@@ -93,7 +113,7 @@
         <h1>Holzstruktur trifft Konstrukteur</h1>
 
         <p class="lead">
-          Gewachsenes Holz verstehen und in eine zuverlässige Tragstruktur überführen – das ist mein kreativer Spielraum als Konstrukteur. Ich setze Holz dort ein, wo es am meisten leistet, und schone so Umwelt, Material und Kosten. Angesprochen sind alle, die sich für das Bauen mit Holz begeistern: private Bauherren, Holzbauunternehmen, Zimmerer und Architekten.
+          Gewachsenes Holz verstehen und in eine zuverlässige Tragstruktur überführen – das ist mein kreativer Spielraum als Konstrukteur. Ich setze Holz dort ein, wo es am meisten leistet, und schone so Umwelt, Material und Kosten. Angesprochen sind alle, die sich für das Bauen mit Holz begeistern: private Bauherren, Holzbauunternehmen, Zimmerer und Architekten in der Oberpfalz.
         </p>
         <p class="hero__actions">
           <a class="btn btn--primary" href="#kontakt">Projekt anfragen</a>
@@ -107,7 +127,16 @@
   <section class="section split" id="vermessung">
     <div class="wrap split__inner">
       <div class="split__head">
-        <p class="kicker"><span class="kicker__num">01</span> Vermessung</p>
+        <!-- Lucide „ruler“ (ISC) -->
+        <svg class="split__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/>
+          <path d="m14.5 12.5 2-2"/>
+          <path d="m11.5 9.5 2-2"/>
+          <path d="m8.5 6.5 2-2"/>
+          <path d="m17.5 15.5 2-2"/>
+        </svg>
+        <p class="kicker">Vermessung</p>
         <h2>Erst messen.<br>Dann konstruieren.</h2>
       </div>
       <div class="split__body">
@@ -125,7 +154,16 @@
   <section class="section section--alt split split--reverse" id="konstruktion">
     <div class="wrap split__inner">
       <div class="split__head">
-        <p class="kicker"><span class="kicker__num">02</span> Konstruktion</p>
+        <!-- Lucide „drafting-compass“ (ISC) -->
+        <svg class="split__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m12.99 6.74 1.93 3.44"/>
+          <path d="M19.136 12a10 10 0 0 1-14.271 0"/>
+          <path d="m21 21-2.16-3.84"/>
+          <path d="m3 21 8.02-14.26"/>
+          <circle cx="12" cy="5" r="2"/>
+        </svg>
+        <p class="kicker">Konstruktion</p>
         <h2>Vom Entwurf zur Baustelle.</h2>
       </div>
       <div class="split__body">
@@ -149,7 +187,16 @@
   <section class="section split" id="absteckung">
     <div class="wrap split__inner">
       <div class="split__head">
-        <p class="kicker"><span class="kicker__num">03</span> Absteckung</p>
+        <!-- Lucide „crosshair“ (ISC) -->
+        <svg class="split__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="22" x2="18" y1="12" y2="12"/>
+          <line x1="6" x2="2" y1="12" y2="12"/>
+          <line x1="12" x2="12" y1="6" y2="2"/>
+          <line x1="12" x2="12" y1="22" y2="18"/>
+        </svg>
+        <p class="kicker">Absteckung</p>
         <h2>Vom Plan zurück<br>aufs Grundstück.</h2>
       </div>
       <div class="split__body">
@@ -171,7 +218,7 @@
   <section class="section section--alt" id="leistungen">
     <div class="wrap">
       <div class="section__head">
-        <p class="kicker"><span class="kicker__num">04</span> Leistungen</p>
+        <p class="kicker">Leistungen</p>
         <h2>Was das Büro übernimmt</h2>
         <p class="lead lead--tight">
           Einzeln beauftragbar oder als durchgehende Begleitung vom Aufmaß bis zur
@@ -181,21 +228,22 @@
 
       <ul class="cards cards--services">
         <li class="card">
-          <h3>Werk- &amp; Ausführungsplanung</h3>
-          <p>Vollständige Holzbaukonstruktion mit Aufbauten, Details und Bauteilkatalog — planungsreif für die Ausführung.</p>
-        </li>
-        <li class="card">
           <h3>Aufmaß &amp; Bestandsvermessung</h3>
           <p>Maßhaltige Erfassung von Grundstück, Bestand und Fundamenten als verlässliche Planungsgrundlage.</p>
-        </li>
-        <li class="card">
-          <h3>Absteckung auf der Baustelle</h3>
-          <p>Achsen, Höhen und Ankerlagen vor Montagebeginn eingemessen und kontrolliert.</p>
         </li>
         <li class="card">
           <h3>3D-Aufnahme &amp; Punktwolke</h3>
           <p>Digitale Bestandsaufnahme für Umbau, Aufstockung und Anschlüsse an bestehende Gebäude.</p>
         </li>
+        <li class="card">
+          <h3>Werk- &amp; Ausführungsplanung</h3>
+          <p>Vollständige Holzbaukonstruktion mit Aufbauten, Details und Bauteilkatalog — planungsreif für die Ausführung.</p>
+        </li>
+        <li class="card">
+          <h3>Absteckung auf der Baustelle</h3>
+          <p>Achsen, Höhen und Ankerlagen vor Montagebeginn eingemessen und kontrolliert.</p>
+        </li>
+        
       </ul>
     </div>
   </section>
@@ -204,7 +252,7 @@
   <section class="section section--dark contact" id="kontakt">
     <div class="wrap contact__inner">
       <div class="contact__pitch">
-        <p class="kicker"><span class="kicker__num">05</span> Kontakt</p>
+        <p class="kicker">Kontakt</p>
         <h2>Sie planen ein Haus<br>in Holzbauweise?</h2>
         <p class="lead">
           Schreiben oder rufen Sie an — am besten mit ein paar Eckdaten zu Ort,
@@ -217,28 +265,39 @@
         </p>
       </div>
 
-      <address class="contact__details">
-        <p class="contact__name">Planungsbüro Georg Kohler</p>
+      <!-- Rechte Spalte: Emblem oben, Adressblock unten. Beide werden über
+           align-content: space-between an die Ränder der Zeile gezogen, damit
+           der Adressblock mit dem Ende der Pitch-Spalte abschließt. -->
+      <div class="contact__aside">
 
-        <div class="contact__row">
-          <span class="contact__label">Adresse</span>
-          <!-- TODO: Straße, PLZ, Ort ersetzen -->
-          <span class="contact__value">Hardt 19<br>93176 Beratzhausen</span>
-        </div>
+        <!-- Emblem: reine Zierde, deshalb ohne Alternativtext und aus dem
+             Accessibility-Baum genommen. Die Grafik ist rein weiß und
+             funktioniert nur auf dunklem Grund (section--dark). -->
+        <img class="contact__seal" src="assets/batch.svg" alt="" aria-hidden="true"
+             width="1187" height="1187" loading="lazy" decoding="async">
 
-        <div class="contact__row">
-          <span class="contact__label">Telefon</span>
-          <!-- TODO: Telefonnummer ersetzen — href im Format +43… ohne Leerzeichen -->
-          <span class="contact__value"><a href="tel:+4915126519164<">+49 151 26 51 91 64</a></span>
-        </div>
+        <address class="contact__details">
+          <p class="contact__name">Planungsbüro Georg Kohler</p>
 
-        <div class="contact__row">
-          <span class="contact__label">E-Mail</span>
-          <!-- TODO: E-Mail-Adresse ersetzen -->
-          <span class="contact__value"><a href="mailto:georg.kohler@holzstrukteur.de">georg.kohler@holzstrukteur.de</a></span>
-        </div>
+          <div class="contact__row">
+            <span class="contact__label">Adresse</span>
+            <!-- TODO: Straße, PLZ, Ort ersetzen -->
+            <span class="contact__value">Hardt 19<br>93176 Beratzhausen</span>
+          </div>
 
-      </address>
+          <div class="contact__row">
+            <span class="contact__label">Telefon</span>
+            <span class="contact__value"><a href="tel:+4915126519164">+49 151 26 51 91 64</a></span>
+          </div>
+
+          <div class="contact__row">
+            <span class="contact__label">E-Mail</span>
+            <!-- TODO: E-Mail-Adresse ersetzen -->
+            <span class="contact__value"><a href="mailto:georg.kohler@holzstrukteur.de">georg.kohler@holzstrukteur.de</a></span>
+          </div>
+
+        </address>
+      </div>
     </div>
   </section>
 
@@ -261,7 +320,8 @@
 
 <script src="script.js"></script>
 
-<!-- TODO: Werte im JSON-LD analog zur Kontaktsektion ausfüllen -->
+<!-- TODO: "areaServed" ergänzen (Einzugsgebiet, z. B. Oberpfalz / Landkreis
+     Regensburg) und "sameAs" mit Google-Unternehmensprofil und Social-Profilen. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -272,16 +332,16 @@
   "logo": "https://holzstrukteur.de/assets/og-image.png",
   "image": "https://holzstrukteur.de/assets/og-image.png",
   "founder": { "@type": "Person", "name": "Georg Kohler" },
-  "telephone": "+49 151 26 51 91 64<",
+  "telephone": "+4915126519164",
   "email": "georg.kohler@holzstrukteur.de",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Hardt 19",
     "postalCode": "93176",
     "addressLocality": "Beratzhausen",
+    "addressRegion": "Bayern",
     "addressCountry": "DE"
   },
-  "areaServed": "TODO: Region",
   "knowsAbout": ["Holzbau", "Holzbaukonstruktion", "Bauvermessung", "Aufmaß"]
 }
 </script>

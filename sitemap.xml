@@ -6,16 +6,9 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://holzstrukteur.de/impressum.html</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://holzstrukteur.de/datenschutz.html</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
 </urlset>
+
+<!-- Impressum und Datenschutz stehen bewusst nicht in der Sitemap: Beide
+     tragen <meta name="robots" content="noindex, follow">. Eine gemeldete
+     URL mit noindex meldet die Search Console als Fehler. -->
+
